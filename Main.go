@@ -15,7 +15,7 @@ import (
 func main() {
 	// 解析命令行参数
 	configFilePath := flag.String("c", "agent_conf.json", "Path of config file")
-	logDir := flag.String("l", "", "Log directory")
+	logDir := flag.String("l", "log", "Log directory")
 	flag.Parse()
 
 	if *logDir == "" || *logDir == "stderr" {

@@ -50,37 +50,31 @@ func (s Seconds) Get() time.Duration {
 
 type Config struct {
 	MultiUserMode               bool       `json:"multi_user_mode"`
-	AgentType                   string     `json:"agent_type"`
-	AlwaysKeepDownconn          bool       `json:"always_keep_downconn"`
-	DisconnectWhenLostAsicboost bool       `json:"disconnect_when_lost_asicboost"`
-	UseIpAsWorkerName           bool       `json:"use_ip_as_worker_name"`
-	IpWorkerNameFormat          string     `json:"ip_worker_name_format"`
-	FixedWorkerName             string     `json:"fixed_worker_name"`
-	SubmitResponseFromServer    bool       `json:"submit_response_from_server"`
-	AgentListenIp               string     `json:"agent_listen_ip"`
-	AgentListenPort             uint16     `json:"agent_listen_port"`
-	Proxy                       []string   `json:"proxy"`
-	UseProxy                    bool       `json:"use_proxy"`
-	DirectConnectWithProxy      bool       `json:"direct_connect_with_proxy"`
-	DirectConnectAfterProxy     bool       `json:"direct_connect_after_proxy"`
-	PoolUseTls                  bool       `json:"pool_use_tls"`
-	Pools                       []PoolInfo `json:"pools"`
+	AgentType                   string     `json:"agent_type"`                     // agent类型，目前只支持btc
+	AlwaysKeepDownconn          bool       `json:"always_keep_downconn"`           // 矿池断开时，是否向矿机发送虚假任务，让矿机不切换到备用矿池
+	DisconnectWhenLostAsicboost bool       `json:"disconnect_when_lost_asicboost"` // 自动重连ASICBoost失效的矿机
+	UseIpAsWorkerName           bool       `json:"use_ip_as_worker_name"`          // 使用矿机IP作为矿机名
+	IpWorkerNameFormat          string     `json:"ip_worker_name_format"`          // IP地址矿机名的格式
+	FixedWorkerName             string     `json:"fixed_worker_name"`              // 使用固定矿机名
+	SubmitResponseFromServer    bool       `json:"submit_response_from_server"`    // 向矿机发送矿池响应
+	AgentListenIp               string     `json:"agent_listen_ip"`                // BTCAgent监听IP
+	AgentListenPort             uint16     `json:"agent_listen_port"`              // BTCAgent监听端口
+	Proxy                       []string   `json:"proxy"`                          // 网络代理
+	UseProxy                    bool       `json:"use_proxy"`                      // 是否使用网络代理
+	DirectConnectWithProxy      bool       `json:"direct_connect_with_proxy"`      // 直连比代理快时使用直连
+	DirectConnectAfterProxy     bool       `json:"direct_connect_after_proxy"`     // 代理连接失败时使用直连
+	PoolUseTls                  bool       `json:"pool_use_tls"`                   // 连接矿池时启用SSL/TLS加密
+	Pools                       []PoolInfo `json:"pools"`                          // 矿池地址、端口、子账户名
 	HTTPDebug                   struct {
 		Enable bool   `json:"enable"`
 		Listen string `json:"listen"`
 	} `json:"http_debug"`
 	Advanced struct {
-		// 每个子账户的矿池连接数量
-		PoolConnectionNumberPerSubAccount uint8 `json:"pool_connection_number_per_subaccount"`
-		// 矿池连接超时时间
-		PoolConnectionDialTimeoutSeconds Seconds `json:"pool_connection_dial_timeout_seconds"`
-		// 矿池读取超时时间
-		PoolConnectionReadTimeoutSeconds Seconds `json:"pool_connection_read_timeout_seconds"`
-		// 假任务的发送周期（秒）
-		FakeJobNotifyIntervalSeconds Seconds `json:"fake_job_notify_interval_seconds"`
-		// 不进行 TLS 证书校验
-		TLSSkipCertificateVerify bool `json:"tls_skip_certificate_verify"`
-
+		PoolConnectionNumberPerSubAccount uint8   `json:"pool_connection_number_per_subaccount"` // 每个子账户的矿池连接数量
+		PoolConnectionDialTimeoutSeconds  Seconds `json:"pool_connection_dial_timeout_seconds"`  // 矿池连接超时时间
+		PoolConnectionReadTimeoutSeconds  Seconds `json:"pool_connection_read_timeout_seconds"`  // 矿池读取超时时间
+		FakeJobNotifyIntervalSeconds      Seconds `json:"fake_job_notify_interval_seconds"`      // 假任务的发送周期（秒）
+		TLSSkipCertificateVerify          bool    `json:"tls_skip_certificate_verify"`           // 不进行 TLS 证书校验
 		// 消息队列大小
 		MessageQueueSize struct {
 			SessionManager     uint `json:"session_manager"`

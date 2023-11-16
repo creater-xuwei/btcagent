@@ -69,7 +69,7 @@ Press Ctrl + C to stop `btcagent`.
 
 ## Configuration file details
 
-See [ConfigFileDetails.md](docs/ConfigFileDetails.md) for more details about [agent_conf.json](agent_conf.default.json).
+See [ConfigFileDetails.md](docs/ConfigFileDetails.md) for more details about [agent_conf.json](agent_conf.json).
 
 ## Run as a systemd service (Auto-start in Linux)
 

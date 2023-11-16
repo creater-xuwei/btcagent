@@ -76,7 +76,7 @@ mkdir log
 
 ## 配置文件详情
 
-欲了解配置文件[agent_conf.json](agent_conf.default.json)中每个选项的作用，请看：[配置文件详情](docs/ConfigFileDetails-zhCN.md)。
+欲了解配置文件[agent_conf.json](agent_conf.json)中每个选项的作用，请看：[配置文件详情](docs/ConfigFileDetails-zhCN.md)。
 
 ## 注册为 systemd 系统服务（Linux 开机自启动）
 
